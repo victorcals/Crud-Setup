@@ -6,7 +6,7 @@ import TheWelcome from '../components/TheWelcome.vue'
 
 <template>
   <main>
-    <h1>Teste home</h1>
+    <h1>Uitlize a pagina cadastro no menu ou a pagina sobre o sistema</h1>
   </main>
 </template>
 <!-- 

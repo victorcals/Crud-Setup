@@ -29,6 +29,7 @@
                         <tr v-for="(estudante, index) in this.estudante" :key="index">
                             <td>{{ estudante.id }}</td>
                             <td>{{ estudante.nome }}</td>
+                            <td>{{ estudante.cpf }}</td>
                             <td>{{ estudante.email }}</td>
                             <td>{{ estudante.rua }}</td>
                             <td>{{ estudante.bairro }}</td>
@@ -36,9 +37,9 @@
                             <td>{{ estudante.complemento }}</td>
                             <!-- <td>{{ estudante.create_at }}</td> -->
                             <td>
-                                <RouterLink to="../estudante/{id}/editar" class=" btn btn-success ">
+                                <router-link :to="'estudante/' + estudante.id + '/editar'" class="btn btn-success">
                                     editar
-                                </RouterLink>
+                                </router-link>
                                 <button type="button" class=" btn btn-danger ">delete</button>
                             </td>
 
@@ -46,10 +47,10 @@
                     </tbody>
                     <tbody v-else>
                         <tr>
-                            <td colspan="8"> carregando</td>
+                            <td colspan="7"> carregando</td>
                         </tr>
 
-                    </tbody>W
+                    </tbody>
                 </table>
             </div>
         </div>

@@ -30,11 +30,12 @@ const router = createRouter({
       name: 'estudanteCreate',
       component: EstudanteCreate
     },
-    // {
-    //   path: 'estudante/id/editar',
-    //   name: 'estudanteEditar',
-    //   component: EstudanteEditar
-    // },
+    {
+      path: '/estudante/:id/editar',
+      name: 'estudanteEditar',
+      component: EstudanteEditar
+    }
+
   ]
 })
 

@@ -116,6 +116,8 @@ class EstudanteController extends Controller
 
     public function editar($id)
     {
+
+        dd($id);
         $estudante = Estudante::find($id);
         if ($estudante) {
             return response()->json([
