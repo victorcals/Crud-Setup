@@ -27,7 +27,7 @@ class EstudanteController extends Controller
             return response()->json([
                 'status' => 404,
                 // não pode acento nas palavras se  não buga tudo kk
-                'Erro' => 'Algo esta errado'
+                'error' => 'Algo esta errado'
             ], 404);
         }
     }
@@ -153,7 +153,7 @@ class EstudanteController extends Controller
             # code...
             return response()->json([
                 'status' => 442,
-                'erro' => $validator->messages()
+                'error' => $validator->messages()
             ], 442);
         } else {
             $estudante = Estudante::find($id);

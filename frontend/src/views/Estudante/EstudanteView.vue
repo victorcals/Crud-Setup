@@ -36,7 +36,9 @@
                             <td>{{ estudante.complemento }}</td>
                             <!-- <td>{{ estudante.create_at }}</td> -->
                             <td>
-                                <RouterLink to="/" class=" btn btn-success ">editar</RouterLink>
+                                <RouterLink to="../estudante/{id}/editar" class=" btn btn-success ">
+                                    editar
+                                </RouterLink>
                                 <button type="button" class=" btn btn-danger ">delete</button>
                             </td>
 
@@ -47,7 +49,7 @@
                             <td colspan="8"> carregando</td>
                         </tr>
 
-                    </tbody>
+                    </tbody>W
                 </table>
             </div>
         </div>

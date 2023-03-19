@@ -8,7 +8,7 @@
             <div class="card-body">
 
 
-                <ul class="alert alert-warning" v-if="Object.keys(this.errorListe).length > 0">
+                <ul class="alert alert-info" role="alert" v-if="Object.keys(this.errorListe).length > 0">
                     <li class="mb-0 ms-3" v-for="(error, index) in this.errorListe" :key="index">
                         {{ error[0] }}
                     </li>
@@ -78,7 +78,7 @@ export default {
     },
     methods: {
         saveEstudante() {
-            var mythis = this;
+            var validador = this;
             axios.post('http://127.0.0.1:8000/api/estudante', this.model.estudante)
                 .then(res => {
                     console.log(res)
@@ -96,7 +96,7 @@ export default {
                 .catch(function (error) {
                     if (error.response) {
                         if (error.response.status == 422) {
-                            mythis.errorListe = error.response.data.errors;
+                            validador.errorListe = error.response.data.error;
                         }
                         // console.log(error.response.data);
                         // console.log(error.response.status);
