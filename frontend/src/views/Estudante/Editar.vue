@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header">
 
-                <h4>ADd</h4>
+                <h4>Editar</h4>
             </div>
             <div class="card-body">
 
@@ -57,7 +57,7 @@ import axios from 'axios';
 // import { ErrorCodes } from 'vue'; ESSA MERDA FAZ DA TELA BRANCA 
 
 export default {
-    name: 'estudanteCreate',
+    name: 'estudanteEditar',
     data() {
         return {
             errorListe: '',
@@ -76,41 +76,56 @@ export default {
             }
         }
     },
+    mounted() {
+        // console.log(this.$route.params.id) teste para ver se está puxando oID
+        this.getEstudanteData(this.$route.params.id)
+    },
     methods: {
-        saveEstudante() {
-            var mythis = this;
-            axios.post('http://127.0.0.1:8000/api/estudante', this.model.estudante)
+
+        getEstudanteData(estudanteId) {
+            const url = `http://127.0.0.1:8000/api/estudante/${estudanteId}/editar`;
+            console.log(url);
+            axios.get(url)
                 .then(res => {
-                    console.log(res)
-                    alert(res.data.message)
-                    this.model.estudante = {
-                        nome: '',
-                        email: '',
-                        cpf: '',
-                        rua: '',
-                        bairro: '',
-                        numero: '',
-                        complemento: '',
-                    }
-                })
-                .catch(function (error) {
-                    if (error.response) {
-                        if (error.response.status == 422) {
-                            mythis.errorListe = error.response.data.errors;
-                        }
-                        // console.log(error.response.data);
-                        // console.log(error.response.status);
-                        // console.log(error.response.headers);
-                    } else if (error.request) {
-
-                        console.log(error.request);
-                    } else {
-
-                        console.log('Error', error.message);
-                    }
-                    console.log(error.config);
+                    console.log(res);
                 });
         }
+
+    },
+    saveEstudante() {
+        var mythis = this;
+        axios.post('http://127.0.0.1:8000/api/estudante', this.model.estudante)
+            .then(res => {
+                console.log(res)
+                alert(res.data.message)
+                this.model.estudante = {
+                    nome: '',
+                    email: '',
+                    cpf: '',
+                    rua: '',
+                    bairro: '',
+                    numero: '',
+                    complemento: '',
+                }
+            })
+            .catch(function (error) {
+                if (error.response) {
+                    if (error.response.status == 422) {
+                        mythis.errorListe = error.response.data.errors;
+                    }
+                    // console.log(error.response.data);
+                    // console.log(error.response.status);
+                    // console.log(error.response.headers);
+                } else if (error.request) {
+
+                    console.log(error.request);
+                } else {
+
+                    console.log('Error', error.message);
+                }
+                console.log(error.config);
+            });
     }
 }
+
 </script>

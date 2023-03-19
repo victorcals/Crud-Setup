@@ -9,4 +9,10 @@ IMPORTANTE import { ErrorCodes } from 'vue'; ESSA MERDA FAZ DA TELA BRANCA
 
  <router-link :to="'estudante/' + estudante.id + '/editar'" class="btn btn-success">
                                     editar
-                                </router-link>
+   </router-link>
+
+   Forma correta de contatenar 
+
+   em Estudante > estudante.vue
+   
+   link de direcionamento realizado com catecanção 

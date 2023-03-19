@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <h4>
-                    Pessoas
+                    Pessoas cadastradas
 
                     <RouterLink to="/estudante/create" class=" btn btn-primary float-end">add</RouterLink>
                 </h4>
@@ -34,7 +34,7 @@
                             <td>{{ estudante.rua }}</td>
                             <td>{{ estudante.bairro }}</td>
                             <td>{{ estudante.numero }}</td>
-                            <td>{{ estudante.complemento }}</td>
+                            <!-- <td>{{ estudante.complemento }}</td> -->
                             <!-- <td>{{ estudante.create_at }}</td> -->
                             <td>
                                 <router-link :to="'estudante/' + estudante.id + '/editar'" class="btn btn-success">

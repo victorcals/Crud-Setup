@@ -114,24 +114,43 @@ class EstudanteController extends Controller
     }
 
 
+
     public function editar($id)
     {
-
-        dd($id);
         $estudante = Estudante::find($id);
         if ($estudante) {
             return response()->json([
                 'status' => 200,
                 'estudante' => $estudante
-            ], 200);
+            ])->header('Access-Control-Allow-Origin', 'http://localhost:5173');
         } else {
             return response()->json([
                 'status' => 404,
-                'message' => " nenhum aluno encontrado
-                "
+                'message' => "Nenhum aluno encontrado"
             ], 404);
         }
     }
+
+    // public function editar($id)
+    // {
+
+    //     dd($id);
+    //     return response()->json($id)->header('Access-Control-Allow-Origin', 'http://localhost:5173');
+
+    //     $estudante = Estudante::find($id);
+    //     if ($estudante) {
+    //         return response()->json([
+    //             'status' => 200,
+    //             'estudante' => $estudante
+    //         ], 200);
+    //     } else {
+    //         return response()->json([
+    //             'status' => 404,
+    //             'message' => " nenhum aluno encontrado
+    //             "
+    //         ], 404);
+    //     }
+    // }
     public function update(Estudante $estudante, Request $request, int $id)
     {
         /*
