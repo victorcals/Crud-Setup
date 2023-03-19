@@ -61,7 +61,7 @@ class EstudanteController extends Controller
         $estudante->complemento = $request->complemento;
         $estudante->save();
 
-        // Estudante::created([
+        // $estudante = Estudante::created([
         //     'nome' => $request->nome,
         //     'cpf ' => $request->cpf,
         //     'email ' => $request->email,
@@ -72,6 +72,11 @@ class EstudanteController extends Controller
         //     'complemento ' => $request->complemento
         //     //     // php artisan refresh att no banco os campos
 
+        // ]);
+
+        // $user = User::create([
+        // 	"name"=>$request->input("name"),
+        // 	"email"=>$request->input("email")
         // ]);
 
 

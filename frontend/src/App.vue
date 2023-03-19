@@ -1,14 +1,13 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+
 </script>
 
 <template>
   <header>
 
     <div class="wrapper">
-
-
 
       <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
@@ -27,7 +26,7 @@ import HelloWorld from './components/HelloWorld.vue'
               </li>
 
               <li class="nav-item">
-                <RouterLink class="nav-link" to="/about">about</RouterLink>
+                <RouterLink class="nav-link" to="/about">sobre o sistma</RouterLink>
               </li>
 
               <li class="nav-item">
@@ -46,4 +45,4 @@ import HelloWorld from './components/HelloWorld.vue'
   <RouterView />
 </template>
 
-<style scoped></style>
+

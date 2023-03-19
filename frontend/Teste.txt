@@ -3,3 +3,6 @@ npm i bootstrap@5.3.0-alpha1
 npm run dev
 
 Php artisan serve
+
+
+IMPORTANTE import { ErrorCodes } from 'vue'; ESSA MERDA FAZ DA TELA BRANCA 
