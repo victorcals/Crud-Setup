@@ -22,7 +22,7 @@ Route::get('estudante', [EstudanteController::class, 'index']);
 Route::post('estudante', [EstudanteController::class, 'store']);
 Route::get('estudante/{id}', [EstudanteController::class, 'show']);
 Route::get('estudante/{id}/editar', [EstudanteController::class, 'editar']);
-Route::put('estudante/{id}/editar', [EstudanteController::class, 'update']);
+Route::put('estudante/{id}/update', [EstudanteController::class, 'update']);
 Route::delete('estudante/{id}/delete', [EstudanteController::class, 'delete']);
 
 

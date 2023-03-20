@@ -1,4 +1,6 @@
 <template>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <div class="container mt - 5">
         <div class="card">
             <div class="card-header">
@@ -45,7 +47,14 @@
                     <input type="text" class="form-control" v-model="model.estudante.complemento">
                 </div>
                 <div class="mb-3">
-                    <button type="button" @click="saveEstudante" class="btn btn-primary">Enviar</button>
+                    <button type="button" @click="editarEstudante($route.params.id)" class="btn btn-primary">Editar</button>
+
+                    <Button class="btn btn-dark">
+                        <RouterLink class=" nav-link active" to="/"> voltar pra home</RouterLink>
+                    </Button>
+
+
+
                 </div>
             </div>
         </div>
@@ -53,17 +62,17 @@
 </template>
 
 <script>
+
+
 import axios from 'axios';
-// import { ErrorCodes } from 'vue'; ESSA MERDA FAZ DA TELA BRANCA 
 
 export default {
     name: 'estudanteEditar',
     data() {
         return {
-            errorListe: '',
+            errorListe: {},
             model: {
                 estudante: {
-
                     nome: '',
                     email: '',
                     cpf: '',
@@ -71,66 +80,63 @@ export default {
                     bairro: '',
                     numero: '',
                     complemento: '',
-
                 }
-            }
+            },
+            estudanteId: null,
         }
     },
     mounted() {
-        // console.log(this.$route.params.id) teste para ver se está puxando oID
         this.getEstudanteData(this.$route.params.id)
+        this.estudanteId = this.$route.params.id;
     },
     methods: {
-
         getEstudanteData(estudanteId) {
             const url = `http://127.0.0.1:8000/api/estudante/${estudanteId}/editar`;
-            console.log(url);
             axios.get(url)
                 .then(res => {
-                    console.log(res.data.estudante);
-
                     this.model.estudante = res.data.estudante
-
-
-
+                })
+                .catch(function (error) {
+                    if (error.response) {
+                        if (error.response.status == 404) {
+                            alert(error.response.data.message)
+                        }
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.log('Error', error.message);
+                    }
+                    console.log(error.config);
+                });
+        },
+        editarEstudante() {
+            let validador = this;
+            axios.put(`http://127.0.0.1:8000/api/estudante/${this.estudanteId}/update`, this.model.estudante)
+                .then(res => {
+                    console.log(res)
+                    alert(res.data.message)
+                })
+                .catch(function (error) {
+                    if (error.response) {
+                        if (error.response.status == 422) {
+                            validador.errorListe = error.response.data.error;
+                        }
+                        if (error.response.status == 404) {
+                            alert(error.response.data.message)
+                        }
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.log('Error', error.message);
+                    }
+                    console.log(error.config);
                 });
         }
-
-    },
-    saveEstudante() {
-        var mythis = this;
-        axios.post('http://127.0.0.1:8000/api/estudante', this.model.estudante)
-            .then(res => {
-                console.log(res)
-                alert(res.data.message)
-                this.model.estudante = {
-                    nome: '',
-                    email: '',
-                    cpf: '',
-                    rua: '',
-                    bairro: '',
-                    numero: '',
-                    complemento: '',
-                }
-            })
-            .catch(function (error) {
-                if (error.response) {
-                    if (error.response.status == 422) {
-                        mythis.errorListe = error.response.data.errors;
-                    }
-                    // console.log(error.response.data);
-                    // console.log(error.response.status);
-                    // console.log(error.response.headers);
-                } else if (error.request) {
-
-                    console.log(error.request);
-                } else {
-
-                    console.log('Error', error.message);
-                }
-                console.log(error.config);
-            });
     }
 }
+
 
 </script>
