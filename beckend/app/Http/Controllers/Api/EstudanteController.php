@@ -243,7 +243,7 @@ class EstudanteController extends Controller
         } else {
             return response()->json([
                 'status' => 404,
-                'message' => "nenhum aluno encontrado "
+                'message' => ""
             ], 404);
         }
     }

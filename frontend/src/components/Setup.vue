@@ -1,4 +1,5 @@
 
+
 <template>
   <div className="container text-center" style="width: 30rem;">
     <div class="row">
@@ -19,21 +20,27 @@
   </div>
 </template>
 
+<style scoped>
+h1 {
+  font-weight: 500;
+  font-size: 2.6rem;
+  top: -10px;
+}
 
-<!-- <script>
-new Vue({
-        el: '#app',
-        data: {
-            link: 'http://google.com.br',
-            linkhtml: '<a href="http://google.com.br"> google 2</a>'
-        },
-        methods: {
-            saudacao: function () {
-                this.titulo = 'bom dia!!!'
-                return this.titulo
-            }
-        },
+h3 {
+  font-size: 1.2rem;
+}
 
-    })
-</script> -->
+.greetings h1,
+.greetings h3 {
+  text-align: center;
+}
 
+@media (min-width: 1024px) {
+
+  .greetings h1,
+  .greetings h3 {
+    text-align: left;
+  }
+}
+</style>

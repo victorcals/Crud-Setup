@@ -40,7 +40,8 @@
                                 <router-link :to="'estudante/' + estudante.id + '/editar'" class="btn btn-success">
                                     editar
                                 </router-link>
-                                <button type="button" class=" btn btn-danger ">delete</button>
+                                <button type="button" @click="deleteEstudante(estudante.id)"
+                                    class=" btn btn-danger ">delete</button>
                             </td>
 
                         </tr>
@@ -79,7 +80,40 @@ export default {
                 this.estudante = res.data.estudante
                 //  console.log(this.estudante)
             })
+        },
+
+        deleteEstudante(estudanteId) {
+            if (confirm('Quer excluir?')) {
+                console.log(estudanteId)
+                axios.delete(`http://127.0.0.1:8000/api/estudante/${estudanteId}/delete`).then(res => {
+
+                    alert(res.data.message)
+                    this.getEstudante();
+                })
+                    .catch(function (error) {
+                        if (error.response) {
+                            if (error.response.status == 422) {
+                                validador.errorListe = error.response.data.error;
+                            }
+                            if (error.response.status == 404) {
+                                alert(error.response.data.message)
+                            }
+                            console.log(error.response.data);
+                            console.log(error.response.status);
+                            console.log(error.response.headers);
+                        } else if (error.request) {
+                            console.log(error.request);
+                        } else {
+                            console.log('Error', error.message);
+                        }
+                        console.log(error.config);
+                    });
+            }
         }
+
     }
 }
+
+
+
 </script>
