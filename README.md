@@ -5,6 +5,7 @@
 
 ## Project setup
 
+:construction: 
 ```
 npm install
 
@@ -14,6 +15,12 @@ npm install
 npm i bootstrap@5.3.0-alpha1
 
 ```
+
+```
+composer install
+
+```
+ :construction:
 
 ## Compiles and hot-reloads for development
 
