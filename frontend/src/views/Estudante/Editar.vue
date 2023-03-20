@@ -87,7 +87,12 @@ export default {
             console.log(url);
             axios.get(url)
                 .then(res => {
-                    console.log(res);
+                    console.log(res.data.estudante);
+
+                    this.model.estudante = res.data.estudante
+
+
+
                 });
         }
 

@@ -34,13 +34,15 @@ class EstudanteController extends Controller
 
 
     public function store(Request $request)
-    {   // o lavavel importou errado
+    {
+
+        // o lavavel importou errado
         // import correto use Illuminate\Support\Facades\Validator;
 
 
 
 
-        Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'nome' => 'required|string|max:191',
             'cpf' => 'required|digits:11',
             'email' => 'required|email|max:191',
@@ -51,6 +53,13 @@ class EstudanteController extends Controller
             'complemento' => 'max:191'
         ]);
 
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'error' => $validator->errors()
+            ], 422);
+        }
+
         $estudante = new Estudante;
         $estudante->nome = $request->nome;
         $estudante->cpf = $request->cpf;
@@ -60,27 +69,29 @@ class EstudanteController extends Controller
         $estudante->numero = $request->numero;
         $estudante->complemento = $request->complemento;
         $estudante->save();
+        /*
+            $estudante = Estudante::created([
+                'nome' => $request->nome,
+                'cpf ' => $request->cpf,
+                'email ' => $request->email,
+                // 'endereco ' => $request->endereco,
+                'rua ' => $request->rua,
+                'bairro ' => $request->bairro,
+                'numero ' => $request->numero,
+                'complemento ' => $request->complemento
+                //     // php artisan refresh att no banco os campos
 
-        // $estudante = Estudante::created([
-        //     'nome' => $request->nome,
-        //     'cpf ' => $request->cpf,
-        //     'email ' => $request->email,
-        //     // 'endereco ' => $request->endereco,
-        //     'rua ' => $request->rua,
-        //     'bairro ' => $request->bairro,
-        //     'numero ' => $request->numero,
-        //     'complemento ' => $request->complemento
-        //     //     // php artisan refresh att no banco os campos
+            ]);
 
-        // ]);
-
-        // $user = User::create([
-        // 	"name"=>$request->input("name"),
-        // 	"email"=>$request->input("email")
-        // ]);
+            $user = User::create([
+            	"name"=>$request->input("name"),
+            	"email"=>$request->input("email")
+            ]);
 
 
-        // dd($estudante);
+
+            dd($estudante);
+             */
 
         if ($estudante) {
             # code...
@@ -96,6 +107,7 @@ class EstudanteController extends Controller
         }
     }
 
+
     public function show($id)
     {
         $estudante = Estudante::find($id);
@@ -108,10 +120,12 @@ class EstudanteController extends Controller
             return response()->json([
                 'status' => 404,
                 'message' => " nenhum aluno encontrado
-                "
+                    "
             ], 404);
         }
     }
+
+
 
 
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="container mt - 5">
+    <div class="container mt-5">
         <div class="card">
             <div class="card-header">
 
@@ -8,8 +8,8 @@
             <div class="card-body">
 
 
-                <ul class="alert alert-info" role="alert" v-if="Object.keys(this.errorListe).length > 0">
-                    <li class="mb-0 ms-3" v-for="(error, index) in this.errorListe" :key="index">
+                <ul class="alert alert-info" role="alert" v-if="Object.keys(errorListe).length > 0">
+                    <li class="mb-0 ms-3" v-for="(error, index) in errorListe" :key="index">
                         {{ error[0] }}
                     </li>
                 </ul>
@@ -60,7 +60,7 @@ export default {
     name: 'estudanteCreate',
     data() {
         return {
-            errorListe: '',
+            errorListe: {},
             model: {
                 estudante: {
 
@@ -78,7 +78,7 @@ export default {
     },
     methods: {
         saveEstudante() {
-            var validador = this;
+            let validador = this;
             axios.post('http://127.0.0.1:8000/api/estudante', this.model.estudante)
                 .then(res => {
                     console.log(res)
