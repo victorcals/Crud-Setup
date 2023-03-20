@@ -11,7 +11,7 @@ import TheWelcome from './components/TheWelcome.vue';
 
     <div class="wrapper">
 
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav class="navbar navbar-expand-lg " data-bs-theme="dark" style="background-color: #52223c;">
         <div class="container">
 
           <RouterLink class="navbar-brand" to="/">Navbar</RouterLink>
